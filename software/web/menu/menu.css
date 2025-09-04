@@ -1,0 +1,114 @@
+
+/* Estilo general */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.component-title {
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    top: 30px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #888;
+    text-align: center;
+  }
+
+  .tab-container {
+    position: fixed; /* Posición fija */
+    top: 0;          /* Ubicado en la parte superior */
+    left: 50%;       /* Centrado horizontalmente */
+    transform: translateX(-50%);
+    width: 524px;
+    padding: 2px;
+    background-color: #dadadb;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+
+  .indicator {
+    content: "";
+    width: 130px;
+    height: 28px;
+    background: #ffffff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 9;
+    border: 0.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 7px;
+   
+}
+
+
+  .tab {
+    width: 130px;
+    height: 28px;
+    position: absolute;
+    z-index: 99;
+    opacity: 0;
+  }
+
+  .tab_label {
+    width: 130px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    cursor: pointer;
+    z-index: 100;
+    position: relative;
+  }
+
+  /* Ubicación del indicador según la opción seleccionada */
+  .tab--1:checked ~ .indicator {
+    left: 2px;
+  }
+
+  .tab--2:checked ~ .indicator {
+    left: calc(130px + 2px);
+  }
+
+  .tab--3:checked ~ .indicator {
+    left: calc(130px * 2 + 2px);
+  }
+
+  .tab--4:checked ~ .indicator {
+    left: calc(130px * 3 + 2px);
+  }
+
+  .tab_label a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 28px;
+  }
+
+  /* Agregar efecto visual a la opción activa */
+.tab_label.active {
+  font-weight: bold; /* Texto en negrita */
+  opacity: 1 !important; /* Hace que el texto se vea más fuerte */
+  color: #000; /* Color más oscuro para destacar */
+}
+
+/* Ajustar el hover para no interferir con el activo */
+.tab_label:hover {
+  opacity: 0.8;
+}

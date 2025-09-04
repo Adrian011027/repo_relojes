@@ -1,0 +1,88 @@
+/* =============================== */
+/* Estilos específicos de REGISTRO */
+/* =============================== */
+
+/* Contenedor que carga dinámicamente el registro */
+#seccion-crear-dinamica {
+  position: relative; /* Antes estaba fixed */
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+/* Grupos de entrada con floating label */
+.inputGroup {
+  position: relative;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.inputGroup input,
+.inputGroup select {
+  width: 100%;
+  padding: 10px 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inputGroup label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 1rem;
+  pointer-events: none;
+  background: white;
+  padding: 0 4px;
+  transition: 0.25s ease;
+}
+
+.inputGroup input:focus + label,
+.inputGroup input:valid + label,
+.inputGroup select:focus + label,
+.inputGroup select:valid + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #007bff;
+}
+
+/* Inputs en foco */
+.inputGroup input:focus,
+.inputGroup select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+/* Botón “Volver” del flujo de registro */
+#btn-volver-crear-dinamico {
+  display: inline-flex;
+  margin-top: 1em;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 0.625rem 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  outline: 0;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#btn-volver-crear-dinamico:hover {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 1);
+}

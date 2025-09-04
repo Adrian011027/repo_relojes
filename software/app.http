@@ -1,0 +1,108 @@
+###
+GET http://192.168.100.47:2298/empleados
+
+###
+PATCH http://192.168.100.47:2298/empleados/2
+Content-Type: application/json
+
+{
+  "username": "Jona perrita"
+}
+###
+
+GET http://192.168.100.9:2298/ping_reloj/reloj2
+###
+
+GET http://192.168.100.16:2298/textra
+###
+GET http://192.168.100.9:2298/tareas_reloj/reloj1
+
+###
+PATCH http://192.168.100.9:2298/update_reloj_id/reloj1
+Content-Type: application/json
+
+{
+"reloj_id": "reloj1",
+"empleado_id": "2"
+}
+
+###
+
+GET http://localhost:2298/users/
+###
+GET http://192.168.100.47:2298/empleados/6
+###
+POST http://localhost:2298/empleados
+Content-Type: application/json
+
+{
+    "nombre": "Empleado de prueba",
+    "tipo": 2,
+    "puesto": "Desarrolador de software",
+    "username": "AEmpleadoPrueba",
+    "password": "password"
+
+}
+###
+DELETE  http://192.168.1.14:2298/empleados/5
+
+
+
+###  Nueva tarea
+PATCH http://192.168.1.5:2298/empleados/5
+Content-Type: application/json
+
+{
+"edad": 23,
+"tareas_asignadas": [{
+    "id": 6,
+    "nombre": "Pendejada empleado 5"
+}]
+}
+
+### Actualizar tarea tienes que pasar id en el json
+PATCH http://192.168.1.64:2298/empleados/11
+Content-Type: application/json
+
+{
+
+  "tareas_asignadas": {
+      "lunes": [],
+      "martes": [],
+      "miercoles": [],
+      "jueves": [],
+      "viernes": [],
+      "sabado": [],
+      "domingo": [
+        {
+          "nombre": "tAREA DOMINGUERA",
+          "descripcion": "Y POR ESO MA SI TU QUIERES VOLVER",
+          "hora": [
+            "17:14",
+            "20:14"
+          ],
+          "estatus": 2
+        }
+      ]
+    }
+
+}
+
+
+###
+Content-Type: application/json
+
+{
+  "tareas_asignadas": [
+    { "domingo": [
+        {
+          "nombre": "tAREA DOMINGUERA",
+          "descripcion": "Y POR ESO MA SI TU QUIERES VOLVER",
+          "hora": ["17:14", "20:14"],
+          "estatus": 2
+        }
+      ]
+    }
+  ]
+}
+ 

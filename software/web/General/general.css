@@ -1,0 +1,315 @@
+/* Reset de estilos */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex; justify-content: center; align-items: center;
+  height: 100vh; text-align: center;
+}
+
+/* Animación de entrada en cascada */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease-out, transform 1s ease-out; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
+
+/* Título con fade */
+h2 { opacity: 0; transition: opacity 1s ease-in-out; }
+h2.show { opacity: 1; }
+
+/* Contenedor principal */
+.container {
+  position: relative;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  width: 90%; height: 85%;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Flechas de empleados (arriba a la derecha) */
+#employee-arrows {
+  position: absolute; top: 20px; right: 20px;
+  display: flex; gap: 8px;
+}
+#employee-arrows button,
+.arrows-col button,
+#today-btn {
+  font-family: inherit; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .1rem;
+  background: transparent; border: 1px solid transparent; cursor: pointer; color: #000;
+  outline: none; padding: .3rem .6rem; border-radius: 6px;
+}
+#employee-arrows button:hover,
+.arrows-col button:hover,
+#today-btn:hover { background: #f3f3f3; }
+#employee-arrows button:focus-visible,
+.arrows-col button:focus-visible,
+#today-btn:focus-visible { outline: 2px solid #2d79f3; outline-offset: 2px; }
+
+/* Contenedor con scroll fijo (y suave) */
+.table-wrapper {
+  position: relative;
+  width: 100%; height: 100%;
+  overflow-y: auto;
+  opacity: 0; transition: opacity 1s ease-in-out;
+  scroll-behavior: smooth;
+
+  /* Scroll-snap para centrar filas */
+  scroll-snap-type: y proximity;
+}
+.table-wrapper.show { opacity: 1; }
+
+/* Banda “sticky” centrada para simular fila fija */
+.sticky-center-band {
+  --row-height: 48px;
+  position: sticky;
+  top: calc(50% - var(--row-height) / 2);
+  height: var(--row-height);
+  left: 0; right: 0;
+  pointer-events: none;
+  z-index: 5;
+  /* Estética: leve realce con borde y fondo sutil */
+  outline: 2px solid rgba(45,121,243,0.85);
+  outline-offset: -2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(45,121,243,0.10),
+    rgba(45,121,243,0.10)
+  );
+  border-radius: 4px;
+}
+
+/* --- Animaciones de deslizamiento --- */
+.slide-left-exit  { animation: slideLeftExit  .4s forwards; }
+.slide-left-enter { animation: slideLeftEnter .4s forwards; }
+.slide-right-exit { animation: slideRightExit .4s forwards; }
+.slide-right-enter{ animation: slideRightEnter .4s forwards; }
+
+@keyframes slideLeftExit  { 
+  from {
+    opacity:1; transform: translateX(0);
+  }   to {
+    opacity:0; transform: translateX(-40px);
+  }
+}
+
+@keyframes slideLeftEnter { 
+  from {
+    opacity:0; transform: translateX(40px);
+  } to {
+    opacity:1; transform: translateX(0);
+  }
+}
+@keyframes slideRightExit { 
+  from {
+    opacity:1; transform: translateX(0);
+  } to {
+    opacity:0; transform: translateX(40px);
+  }
+}
+@keyframes slideRightEnter{ 
+  from {
+    opacity:0; transform: translateX(-40px);
+  } to {
+    opacity:1; transform: translateX(0);
+  }
+}
+
+/* -------------------- Tabla -------------------- */
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 0; 
+  table-layout: fixed;
+}
+thead {
+  position: sticky; 
+  top: 0; 
+  z-index: 10; 
+  background-color: #f0f0f0;
+}
+thead tr { 
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .1); 
+}
+
+th, td {
+  border: 1px solid #ccc; 
+  padding: 5px; 
+  text-align: center; 
+  word-wrap: break-word; 
+  overflow: hidden;
+}
+tbody td { 
+  position: relative; 
+  z-index: 0; }
+
+th { 
+  background-color: #f0f0f0; 
+  font-weight: bold; 
+  height: 50px; }
+
+/* Fila actual (hora actual) – sigue resaltada por detrás de la banda */
+tbody tr.current-row {
+  background: #eaf3ff;
+}
+
+/* Cada fila “snapea” al centro del viewport del contenedor */
+tbody tr {
+  scroll-snap-align: center;
+}
+
+/* Encabezado de los trabajadores (Nombre + Imagen en línea) */
+.worker-header {
+  display: flex; 
+  flex-direction: column; /* Changed from row to column */
+  align-items: center; 
+  justify-content: center;
+  gap: 3px; /* Reduced gap for vertical layout */
+  padding: 0px; /* Slightly reduced padding */
+  white-space: nowrap;
+}
+
+/* Imagen circular del trabajador */
+.worker-header img {
+  width: 50px; /* Reducido de 60px */
+  height: 50px; /* Reducido de 60px */
+  border-radius: 50%; 
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+}
+
+/* Nombre + puesto */
+.worker-text { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  max-width: 100%; 
+  white-space: normal; 
+  text-align: center; 
+  width: 100%; /* Asegura que el texto use el espacio disponible */
+}
+
+.worker-header span { 
+  font-weight: bold; 
+  font-size: 14px; /* Reducido de 16px */
+  text-align: center; 
+  display: flex; 
+  flex-direction: column;
+  overflow-wrap: break-word; /* Permite romper palabras largas */
+  word-break: break-all; /* Fuerza quiebres de palabra si es necesario */
+}
+
+.worker-header span:last-child { 
+  color: #00000056; 
+  font-size: 12px; 
+}
+
+.worker-role { 
+  font-size: 12px; 
+  color: #00000056; 
+  white-space: normal; 
+  word-break: break-word; 
+  text-align: center; 
+}
+
+/* Estados */
+.status-inprogress { 
+  background-color: #ffec99; 
+}  /* Amarillo - In Progress (1) */
+.status-todo       { 
+  background-color: #99ccff; 
+}  /* Azul    - To Do (2)      */
+.status-extras     { 
+  background-color: #d9d9d9; 
+}  /* Gris    - Extras (3)     */
+.status-done       { 
+  background-color: #b2f0b2; 
+}  /* Verde   - Done  (0,4)    */
+
+.status-overdue {
+  background-color: #ff6666 !important; /* Rojo para actividades vencidas */
+  z-index: 0 !important;
+}
+
+/******* Reloj *******/
+/* Variables impresas desde JS */
+.clock-day:before    { 
+  content: var(--timer-day); 
+}
+.clock-hours:before  { 
+  content: var(--timer-hours); 
+}
+.clock-minutes:before{ 
+  content: var(--timer-minutes); 
+}
+.clock-seconds:before{ 
+  content: var(--timer-seconds); 
+}
+
+.clock-container {
+  opacity: 0; transition: opacity 1s ease-in-out;
+  margin: 5px 0; background-color: #ffffff; border-radius: 3px; padding: 5px 8px;
+  display: flex; align-items: center;
+}
+.clock-container.show { opacity: 1; }
+
+.clock-col { text-align: center; margin: 0 10px; min-width: 20px; position: relative; }
+.clock-col:not(:last-child):before,
+.clock-col:not(:last-child):after {
+  content: ""; background-color: rgba(0,0,0,.3); height: 2px; width: 2px; border-radius: 50%;
+  display: block; position: absolute; right: -4px;
+}
+.clock-col:not(:last-child):before { top: 40%; }
+.clock-col:not(:last-child):after  { top: 60%; }
+
+/* Ocultar columnas de hora/min/seg si NO es hoy */
+.hidden { display: none !important; }
+
+/* Texto de actividad en columna 2 */
+.activity-name { font-weight: bold; margin-bottom: 4px; }
+.activity-desc { font-size: .9rem; color: #555; line-height: 1.2; }
+
+
+/* ===== Modal ===== */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal.hidden { display: none; }
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 10000;
+}
+.modal-close {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#modal-close-btn { background: #ccc; }
+#modal-complete-btn { background: #2d79f3; color: #fff; }

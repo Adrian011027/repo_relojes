@@ -1,0 +1,175 @@
+/* Reset y estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;           /* más robusto que height fija */
+  background-color: #f5f5f5;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 400px;
+  max-width: 92vw;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Campos de entrada */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flex-column > label {
+  color: #151717;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+  background-color: white;
+}
+
+/* Iconos SVG dentro del input */
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #888888;
+}
+
+/* Espaciado y estilos de los inputs */
+.input {
+  margin-left: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+/* Borde cambia de color cuando está en foco */
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+/* Botón */
+.button-submit {
+  margin-top: 10px;
+  background-color: #151717;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button-submit:hover {
+  background-color: #252727;
+}
+
+/* Mensaje */
+#mensaje {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Chevron de inicio (parte superior derecha) */
+.chevron-inicio {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+/* Fila para agrupar texto + chevron */
+.chevron-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Enlace: negro y sin subrayado en todos los estados */
+.chevron-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none !important;
+  color: #000 !important;
+}
+
+.chevron-link:visited,
+.chevron-link:active,
+.chevron-link:focus,
+.chevron-link:hover {
+  text-decoration: none !important;
+  color: #000 !important;
+}
+
+/* Texto del enlace */
+.chevron-text {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 500;
+}
+
+/* Chevron negro siempre */
+.chevron-inicio svg path {
+  stroke: #000 !important;
+}
+
+/* Pequeños ajustes responsivos */
+@media (max-width: 480px) {
+  .form {
+    padding: 22px;
+    gap: 12px;
+  }
+  .chevron-inicio {
+    top: 16px;
+    right: 16px;
+  }
+}

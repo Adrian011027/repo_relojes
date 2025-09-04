@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "empleado_id": 999
+    },
+    {
+      "username": "Luis",
+      "password": "123456",
+      "role": "empleado",
+      "empleado_id": 1
+    },
+    {
+      "username": "adr0110",
+      "password": "Passw0rd1",
+      "role": "empleado",
+      "empleado_id": 3
+    },
+    {
+      "username": "Davif",
+      "password": "123456",
+      "role": "empleado",
+      "empleado_id": 4
+    },
+    {
+      "username": "angel",
+      "password": "123456",
+      "role": "empleado",
+      "empleado_id": 4
+    },
+    {
+      "username": "jonathan",
+      "password": "123456",
+      "role": "empleado",
+      "empleado_id": 5
+    },
+    {
+      "username": "prueba",
+      "password": "$2b$12$y8NTTsI/yOgKT4ocvGn8teULtcXTQal7Z4RuwOI.2PxEFP0lZdkbu",
+      "role": "empleado",
+      "empleado_id": 8
+    }
+  ]
+}

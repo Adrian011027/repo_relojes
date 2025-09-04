@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="/web/Login/login.css" />
+  <script src="/web/Login/login.js" defer></script>
+</head>
+<body>
+  <!-- Chevron/volver -->
+  <div class="chevron-inicio">
+  <a href="/inicio" title="Ir a inicio" class="chevron-link chevron-row">
+    <span class="chevron-text">Ir a inicio</span>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</div>
+
+
+  <div class="container">
+    <form id="loginForm" class="form" autocomplete="on">
+      <h2>Iniciar Sesión</h2>
+
+      <!-- Campo Usuario -->
+      <div class="flex-column">
+        <label for="username">Usuario</label>
+        <div class="inputForm">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C9.79 2 8 3.79 8 6C8 8.21 9.79 10 12 10C14.21 10 16 8.21 16 6C16 3.79 14.21 2 12 2ZM12 12C8.13 12 4.85 13.57 3 16C3 18.67 3 20 12 20C21 20 21 18.67 21 16C19.15 13.57 15.87 12 12 12Z" />
+          </svg>
+          <input type="text" id="username" class="input" placeholder="Ingrese su usuario" required />
+        </div>
+      </div>
+
+      <!-- Campo Contraseña -->
+      <div class="flex-column">
+        <label for="password">Contraseña</label>
+        <div class="inputForm">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C9.24 2 7 4.24 7 7V10H5C3.9 10 3 10.9 3 12V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V12C21 10.9 20.1 10 19 10H17V7C17 4.24 14.76 2 12 2ZM9 7C9 5.34 10.34 4 12 4C13.66 4 15 5.34 15 7V10H9V7ZM12 14C13.1 14 14 14.9 14 16C14 17.1 13.1 18 12 18C10.9 18 10 17.1 10 16C10 14.9 10.9 14 12 14Z" />
+          </svg>
+          <input type="password" id="password" class="input" placeholder="Ingrese su contraseña" required />
+        </div>
+      </div>
+
+      <button type="submit" class="button-submit">Ingresar</button>
+      <p id="mensaje"></p>
+    </form>
+  </div>
+</body>
+</html>

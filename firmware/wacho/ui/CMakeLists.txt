@@ -1,0 +1,12 @@
+SET(SOURCES ui_comp_slider1.c
+    ui_comp.c
+    ui_PantallaPendientes.c
+    ui_PantallaTareasExtras.c
+    ui.c
+    ui_comp_hook.c
+    ui_helpers.c
+    ui_img_agregartarea50_png.c
+    ui_img_flecha50_png.c
+    fonts/ui_font_ArialRounded.c)
+
+add_library(ui ${SOURCES})

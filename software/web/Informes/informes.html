@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Informes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme"  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/web/menu/menu.css" />
+  <link rel="stylesheet" href="/web/Informes/informes.css" />
+
+  <!-- Iconos (opcional) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <!-- JS -->
+  <script src="/web/menu/menu.js" defer></script>
+  <!-- Los módulos ya son "deferred" por defecto -->
+  <script src="/web/Informes/main.js" type="module"></script>
+</head>
+<body>
+  <!-- Menú -->
+  <div id="menu-container" aria-label="Menú principal"></div>
+
+  <!-- Contenido principal -->
+  <main class="container" id="main-content">
+    <section id="informes-content" class="fade-in" aria-labelledby="titulo-informes">
+      <!-- Hacer visible el título (quitamos la clase que lo oculta) -->
+      <h1 id="titulo-informes">Informes</h1>
+
+      <!-- Agrupamos tarjetas + calendario en una fila controlada por CSS -->
+      <div class="content-row">
+        <!-- Izquierda: tarjetas de empleados -->
+        <section id="tarjetas-container"
+                 aria-label="Lista de empleados"
+                 role="list"
+                 aria-live="polite">
+          <!-- Las tarjetas (role="listitem") se inyectan por JS -->
+        </section>
+
+        <!-- Derecha: card de tareas (aparece al hacer click) -->
+        <aside id="calendario-container"
+               class="is-hidden"
+               aria-live="polite"
+               aria-label="Tareas del empleado seleccionado">
+          <!-- Se inyectará .tasks-card via JS -->
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <noscript>
+    Esta página requiere JavaScript para funcionar correctamente.
+  </noscript>
+</body>
+</html>
