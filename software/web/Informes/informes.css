@@ -174,32 +174,188 @@ body {
   width: 100%;
   background-color: #fff;
   color: #333;
-  overflow-y: auto;
+  overflow: hidden; /* parent should hide overflow; body handles scrolling */
   padding: 0;
+  min-height: 0; /* allow children to shrink and enable internal scrolling */
 }
 
 .tasks-card-header {
-  padding: 10px 15px;
+  padding: 6px 16px; /* reduce top/bottom padding to bring header up */
   border-bottom: 1px solid #ddd;
-  background-color: #fff; 
+  background-color: #fff;
   font-weight: 600;
   color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRAR contenido */
+  justify-content: center;
+  text-align: center;
 }
 .tasks-card-header p {
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Título a la derecha */
   font-size: 1rem;
 }
 .tasks-card-header i {
   display: none;
 }
 
+/* ===== Bloque de cortes mensuales (antes 'Quincenas') ===== */
+.quincenas-block {
+  margin-top: 10px; /* smaller gap under title */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centrar elementos del bloque */
+  gap: 6px;
+}
+
+/* Ajuste para el wrapper interno del título para eliminar margenes extras */
+.tasks-header-top { 
+  width: 100%; 
+}
+
+.tasks-header-top p { 
+  font-size: 1.5rem;
+  margin: 0; 
+  padding: 0; 
+}
+.quincena-label {
+  font-size: 0.75rem;
+  color: #666;
+}
+.quincenas-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quincena-item {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #153063;
+}
+.quincena-item[aria-pressed="true"] {
+  background-color: rgba(21,48,99,0.08);
+}
+.quincena-clickable {
+  cursor: pointer;
+  color: #0b63d6;
+  text-decoration: underline;
+}
+.quincena-clickable:hover {
+  filter: brightness(0.95);
+}
+.quincena-sep { color: #999; }
+
+/* Calendario de 15 días que termina en el corte (ventana) */
+.calendario-quincenal { margin-top: 8px; display: flex; justify-content: center; }
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+  gap: 6px;
+  max-width: 420px;
+}
+.calendario-dia {
+  padding: 6px 8px;
+  border: 1px solid #e0e6f0;
+  background: transparent;
+  border-radius: 6px;
+  min-width: 36px;
+  cursor: pointer;
+}
+.calendario-dia:hover { background: #f1f5ff; }
+.dia-selected { background: #0b63d6; color: #fff; border-color: #0b63d6; }
+
+/* Destacar días de corte */
+.calendario-dia[data-cutoff="1"] {
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.12);
+  border-color: rgba(255, 193, 7, 0.3);
+}
+.calendario-dia[data-cutoff="2"] {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.08);
+  border-color: rgba(220, 53, 69, 0.25);
+}
+
+/* Día actual */
+.calendario-dia.dia-hoy {
+  background: linear-gradient(180deg, #fff8e1 0%, #fff4c2 100%);
+  border-color: rgba(255, 193, 7, 0.6);
+  box-shadow: 0 6px 18px rgba(255, 193, 7, 0.08);
+}
+
+@media (max-width: 600px) {
+  .calendario-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Estilos elegantes adicionales */
+.calendario-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 6px 0 4px 0;
+}
+.calendario-dia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.calendario-dia:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+.dia-num {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.dia-selected .dia-num {
+  /* When a day is selected, keep the number highly readable (black) against the accented background */
+  color: #000000;
+}
+.dia-selected .dia-week {
+  /* Mostrar la abreviatura del día en negro cuando el día está seleccionado */
+  color: #000000;
+}
+.dia-week {
+  font-size: 0.65rem;
+  color: #6b7280;
+  margin-top: 2px;
+}
+.dia-selected {
+  background: linear-gradient(180deg, #0b63d6 0%, #064bb0 100%);
+  box-shadow: 0 8px 24px rgba(11, 99, 214, 0.18);
+}
+
 .tasks-card-body {
   flex: 1;
   padding: 15px;
-  overflow-y: auto;
+  overflow-y: auto; /* internal scrolling area */
+  min-height: 0; /* required for overflow inside flex children */
+}
+
+/* Mostrar el contenido de tareas en dos columnas en pantallas anchas */
+@media (min-width: 900px) {
+  .tasks-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    align-items: start;
+  }
+  /* Asegurar que cada lista ocupe la columna completa */
+  .tasks-card-body > div {
+    width: 100%;
+  }
+}
+
+/* En pantallas pequeñas mantenemos una columna */
+@media (max-width: 899px) {
+  .tasks-card-body { display: block; }
 }
 
 .tasks-section-title {
@@ -231,10 +387,9 @@ body {
 .tasks-list li {
   /* === AQUÍ USAMOS GRID === */
   display: grid;
-   grid-template-columns: 180px 80px 1fr;
-  gap: 100px;
-  align-items: flex-start;
-  
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
@@ -302,9 +457,23 @@ body {
   align-items: stretch;
 }
 
+/* Asegurar que la fila de contenido ocupe toda la altura disponible
+   para que los hijos flex (calendario) puedan limitar su altura y
+   mostrar scroll interno. */
+.content-row { flex: 1 1 auto; height: 100%; }
+
 /* Contenedores internos */
-#tarjetas-container{ display: flex; flex-direction: column; gap: 1rem; width: 100%; }
-#calendario-container{ display: block; width: 100%; }
+#tarjetas-container{ display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+  width: 100%; 
+}
+
+#calendario-container{ 
+  display: block; 
+  width: 100%;
+  margin-top: -3rem;
+}
 
 /* En pantallas grandes: tarjetas + calendario lado a lado */
 @media (min-width: 1000px){
@@ -315,4 +484,7 @@ body {
   }
   #tarjetas-container{ flex: 0 0 420px; max-width: 420px; }
   #calendario-container{ flex: 1 1 auto; }
+  /* Si el calendario está en modo 'tasks-card', ocupará 100% de altura
+     del contenedor para que el body interno pueda scrollear. */
+  #calendario-container.tasks-card { height: 100%; }
 }

@@ -19,7 +19,7 @@ async def auth_middleware(request, handler):
     path = request.path
 
     rutas_publicas = [
-        "/", "/inicio", "/login", "/logout", "/web", "/empleados.json",
+        "/", "/actividades", "/login", "/logout", "/web", "/empleados.json",
         "/relojes_conectados.json", "/ws", "/ping_reloj", "/ping_relojes"
     ]
     if any(path.startswith(r) for r in rutas_publicas):
@@ -27,22 +27,22 @@ async def auth_middleware(request, handler):
 
     user_cookie = request.cookies.get("usuario")
     if not user_cookie:
-        return web.HTTPFound("/inicio")
+        return web.HTTPFound("/actividades")
 
     try:
         user = json.loads(user_cookie)
     except Exception:
-        return web.HTTPFound("/inicio")
+        return web.HTTPFound("/actividades")
 
     rol = user.get("role")
 
     if path.startswith(("/gestion", "/empleados", "/registrar-equipo")):
         if rol != "admin":
-            return web.HTTPFound("/inicio")
+            return web.HTTPFound("/actividades")
 
-    if path.startswith(("/informes", "/general")):
+    if path.startswith(("/informes", "/actividades")):
         if rol not in ["admin", "empleado"]:
-            return web.HTTPFound("/inicio")
+            return web.HTTPFound("/actividades")
 
     return await handler(request)
 

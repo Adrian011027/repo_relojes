@@ -14,8 +14,7 @@ def setup_misc_routes(app: web.Application):
 
     # --- Páginas ---
     app.router.add_get("/", views.home)
-    app.router.add_get("/inicio", views.inicio)
-    app.router.add_get("/general", views.general)
+    app.router.add_get("/actividades", views.actividades)
     app.router.add_get("/gestion", views.gestion)
     app.router.add_get("/informes", views.informes)
     app.router.add_get("/registrar-equipo", views.registrar_equipo)

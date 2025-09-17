@@ -18,9 +18,8 @@ function buildMenu() {
   if (!loggedUser) {
     // No hay sesión iniciada (visitante)
     menuItems = [
-      { tabId: 'tab-1', label: 'Inicio', href: '/inicio', defaultChecked: true },
-      { tabId: 'tab-2', label: 'General', href: '/general' },
-      { tabId: 'tab-3', label: 'Iniciar Sesión', href: '/login' }
+      { tabId: 'tab-1', label: 'Actividades', href: '/actividades' },
+      { tabId: 'tab-2', label: 'Iniciar Sesión', href: '/login' }
     ];
   } else {
     // Hay sesión iniciada
@@ -28,19 +27,17 @@ function buildMenu() {
     // Aceptar tanto "admin" como "administrador" para evitar inconsistencias
     if (userRole === "admin" || userRole === "administrador") {
       menuItems = [
-        { tabId: 'tab-1', label: 'Inicio', href: '/inicio', defaultChecked: true },
-        { tabId: 'tab-2', label: 'General', href: '/general' },
-        { tabId: 'tab-3', label: 'Informes', href: '/informes' },
-        { tabId: 'tab-4', label: 'Gestión', href: '/gestion' },
-        { tabId: 'tab-5', label: 'Cerrar Sesión', href: '/logout' }
+        { tabId: 'tab-1', label: 'Actividades', href: '/actividades', defaultChecked: true },
+        { tabId: 'tab-2', label: 'Informes', href: '/informes' },
+        { tabId: 'tab-3', label: 'Gestión', href: '/gestion' },
+        { tabId: 'tab-4', label: 'Cerrar Sesión', href: '/logout' }
       ];
     } else {
       // Usuario empleado (no admin)
       menuItems = [
-        { tabId: 'tab-1', label: 'Inicio', href: '/inicio', defaultChecked: true },
-        { tabId: 'tab-2', label: 'General', href: '/general' },
-        { tabId: 'tab-3', label: 'Informes', href: '/informes' },
-        { tabId: 'tab-4', label: 'Cerrar Sesión', href: '/logout' }
+        { tabId: 'tab-1', label: 'Actividades', href: '/actividades', defaultChecked: true },
+        { tabId: 'tab-2', label: 'Informes', href: '/informes' },
+        { tabId: 'tab-3', label: 'Cerrar Sesión', href: '/logout' }
       ];
     }
   }
