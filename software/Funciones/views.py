@@ -9,8 +9,8 @@ async def home(request):
 async def inicio(request):
     return web.FileResponse('./web/Home/home.html')
 
-async def general(request):
-    return web.FileResponse('./web/General/general.html')
+async def actividades(request):
+    return web.FileResponse('./web/Actividades/actividades.html')
 
 async def gestion(request):
     return web.FileResponse('./web/gestion/gestion.html')
