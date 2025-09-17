@@ -7,7 +7,7 @@ import { mostrarTareasEmpleado, setTareasRealizadasMap } from "./components/Tare
 /* -------------------- Sesión ------------------- */
 const usuario = JSON.parse(localStorage.getItem("loggedUser"));
 if (!usuario || !["admin", "empleado"].includes(usuario.role)) {
-  window.location.href = "/inicio";
+  window.location.href = "/actividades";
 }
 
 /* ---- Datos globales en memoria (una sola carga) */

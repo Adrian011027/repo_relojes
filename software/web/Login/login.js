@@ -26,7 +26,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         // Guardamos únicamente el objeto del usuario autenticado
         localStorage.setItem("loggedUser", JSON.stringify(loggedUserData));
         // Redirigir al usuario a la página de inicio
-        window.location.href = "/inicio";
+        window.location.href = "/actividades";
     } else {
         // Mostrar mensaje de error si el login falla
         document.getElementById("mensaje").textContent = data.detail || "Error en el login";

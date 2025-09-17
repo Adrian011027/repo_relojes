@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actividades</title>
+  <link rel="stylesheet" href="/web/Actividades/actividades.css"/>
+  <link rel="stylesheet" href="/web/menu/menu.css"/>
+  <script type="module" src="web/actividades/actividades.js" defer></script>
+
+  <script src="/web/menu/menu.js" defer></script>
+</head>
+<body>
+  <div id="menu-container"></div>
+
+  <div class="container">
+    <!-- Header: KPI (izquierda) + Título (centrado) -->
+    <div class="page-header">
+      <!-- KPI compacto -->
+      <section id="task-progress" class="task-progress-card compact fade-in" aria-label="Progreso de tareas">
+        <div class="chart">
+          <svg class="progress-ring" width="120" height="120" aria-label="Progreso de tareas">
+            <!-- Pista (track) de fondo -->
+            <circle class="progress-ring__track" stroke="#eeeeee" stroke-width="10"
+                    fill="transparent" r="50" cx="60" cy="60"
+                    stroke-dasharray="314" stroke-dashoffset="0" />
+            <!-- No completadas (base roja, 100%) -->
+            <circle class="progress-ring__circle not-completed"
+                    fill="transparent" r="50" cx="60" cy="60"
+                    stroke-dasharray="314" stroke-dashoffset="314" />
+            <!-- Completadas (segmento azul) -->
+            <circle class="progress-ring__circle completed"
+                    fill="transparent" r="50" cx="60" cy="60"
+                    stroke-dasharray="314" stroke-dashoffset="314" />
+          </svg>
+
+          <!-- Texto central -->
+          <div class="chart-text">
+            <div class="count" id="chartCountG">0/0</div>
+            <div class="percent" id="chartPercentG">0%</div>
+          </div>
+        </div>
+
+        <!-- Lateral: leyenda + separador + extras -->
+        <div class="side-panel">
+          <div class="legend">
+            <div class="legend-item">
+              <span class="legend-color completed"></span>
+              <span class="legend-text">Tareas Completadas</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color not-completed"></span>
+              <span class="legend-text">No Completadas</span>
+            </div>
+          </div>
+
+          <div class="v-sep" role="separator" aria-hidden="true"></div>
+
+          <div class="extras-panel" title="Total de tareas extra realizadas (terminadas) hoy; no se incluyen en la gráfica">
+            <div class="legend-item extras-item">
+              <span class="legend-color extras"></span>
+              <span class="legend-text">Tareas extra realizadas</span>
+            </div>
+            <div class="extras-count" id="extrasCountG">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Título centrado -->
+      <h2 class="fade-in">Actividades</h2>
+    </div>
+
+    <!-- Reloj / Día -->
+    <div class="clock-container" aria-label="Reloj y selección de día">
+      <div class="clock-col arrows-col">
+        <button id="today-btn" title="Regresar al día actual" aria-label="Ir a hoy">Hoy</button>
+      </div>
+
+      <div class="clock-col">
+        <div class="clock-timer" id="tasks-day"></div>
+      </div>
+
+      <div class="clock-col clock-col-real">
+        <div class="clock-timer clock-hours"></div>
+      </div>
+      <div class="clock-col clock-col-real">
+        <div class="clock-timer clock-minutes"></div>
+      </div>
+      <div class="clock-col clock-col-real">
+        <div class="clock-timer clock-seconds"></div>
+      </div>
+
+      <div class="clock-col arrows-col">
+        <button id="next-day-btn" title="Siguiente día" aria-label="Siguiente día">→</button>
+      </div>
+    </div>
+
+    <!-- Controles de paginación de empleados -->
+    <div id="employee-arrows" aria-label="Paginación de empleados">
+      <button id="prev-emp-page" title="Trabajadores anteriores" aria-label="Trabajadores anteriores">&larr;</button>
+      <button id="next-emp-page" title="Trabajadores siguientes" aria-label="Trabajadores siguientes">&rarr;</button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-wrapper" id="table-wrapper">
+      <table id="worker-table">
+        <thead>
+          <tr></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de tarea (información) -->
+  <div id="task-modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <h3 id="modal-task-name">Nombre de la tarea</h3>
+      <p id="modal-task-desc">Descripción completa de la tarea...</p>
+      <div class="modal-actions">
+        <button id="modal-close-btn">Cerrar</button>
+        <button id="modal-complete-btn">Tarea Completada</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div id="cell-menu" class="cell-menu hidden" role="menu" aria-hidden="true">
+    <button type="button" class="menu-item" data-action="info">Información</button>
+    <button type="button" class="menu-item" data-action="edit">Editar tarea</button>
+  </div>
+
+  <div id="profile-menu" class="profile-menu pm-hidden">
+    <button type="button" class="menu-item" data-action="emp-info">Información</button>
+    <button type="button" class="menu-item" data-action="emp-create">Crear Tarea</button>
+    <button type="button" class="menu-item" data-action="emp-edit">Editar empleado</button>
+  </div>
+
+
+  <div id="modal-create-task" class="modal hidden"></div>
+</body>
+</html>
