@@ -195,6 +195,7 @@ table {
   width: 100%; 
   border-collapse: collapse; 
   margin-top: 0; 
+  /* fixed layout lets column widths be respected */
   table-layout: fixed;
 }
 thead {
@@ -215,6 +216,18 @@ th {
   background: var(--c-header); 
   font-weight: bold; 
   height: 50px; 
+}
+
+/* Ajustes de ancho para las primeras columnas: horario, actividad, puntos */
+thead th:nth-child(1), tbody td:nth-child(1) {
+  width: 90px;             /* Horario: estrecho */
+}
+thead th:nth-child(2), tbody td:nth-child(2) {
+  width: 240px;           /* Actividad: menos ancho que antes */
+  max-width: 240px;
+}
+thead th:nth-child(3), tbody td:nth-child(3) {
+  width: 80px;            /* Puntos: pequeño */
 }
 
 /* Fila actual (hora actual) */
